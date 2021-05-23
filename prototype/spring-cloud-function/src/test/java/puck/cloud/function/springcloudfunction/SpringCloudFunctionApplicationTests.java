@@ -2,36 +2,27 @@ package puck.cloud.function.springcloudfunction;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
+import org.springframework.cloud.function.context.test.FunctionalSpringBootTest;
+import org.springframework.test.web.reactive.server.WebTestClient;
+import reactor.core.publisher.Mono;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.asyncDispatch;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-
-@SpringBootTest
-@AutoConfigureMockMvc
+@FunctionalSpringBootTest
+@AutoConfigureWebTestClient
 class SpringCloudFunctionApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Autowired
+    private WebTestClient client;
 
-	@Autowired
-	private MockMvc mockMvc;
+    @Test
+    void doesContainsCloud() {
+        client.post().uri("/containsCloud").body(Mono.just("this is a cloud"), String.class).exchange()
+                .expectStatus().isOk().expectBody(String.class).isEqualTo("true");
+    }
 
-	@Test
-	public void doesContainsCloud() throws Exception {
-		MvcResult result = this.mockMvc.perform(post("/containsCloud").contentType(MediaType.TEXT_PLAIN).content("this is a cloud")).andReturn();
-		mockMvc.perform(asyncDispatch(result)).andExpect(content().string("true"));
-	}
-
-	@Test
-	public void doesNotContainsCloud() throws Exception {
-		MvcResult result = this.mockMvc.perform(post("/containsCloud").contentType(MediaType.TEXT_PLAIN).content("this is a function")).andReturn();
-		mockMvc.perform(asyncDispatch(result)).andExpect(content().string("false"));
-	}
+    @Test
+    void doesNotContainsCloud() {
+        client.post().uri("/containsCloud").body(Mono.just("this is a function"), String.class).exchange()
+                .expectStatus().isOk().expectBody(String.class).isEqualTo("false");
+    }
 }
