@@ -13,5 +13,8 @@
     <modules>
         <module>demo/aws-serverless-java-container
         </module><!-- https://github.com/awslabs/aws-serverless-java-container.git -->
+        <module>demo/MySpringCloudFunctionPlanet
+        </module><!-- https://github.com/mydeveloperplanet/MySpringCloudFunctionPlanet.git -->
+        <module>prototype/spring-cloud-function</module>
     </modules>
 </project>
