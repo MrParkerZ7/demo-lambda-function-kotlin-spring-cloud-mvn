@@ -3,8 +3,6 @@ package puck.cloud.function.springcloudfunction;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.function.context.FunctionalSpringApplication;
 import org.springframework.context.annotation.Bean;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 import java.util.function.Function;
 
@@ -16,7 +14,7 @@ public class SpringCloudFunctionApplication {
     }
 
     @Bean
-    public Function<Flux<String>, Flux<Boolean>> flux() {
-        return req -> Flux.from(req).map(str -> str.contains("cloud"));
+    public Function<String, Boolean> flux() {
+        return str ->str.contains("cloud");
     }
 }

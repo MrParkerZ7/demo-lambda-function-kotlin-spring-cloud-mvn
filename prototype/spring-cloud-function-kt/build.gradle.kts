@@ -23,8 +23,6 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("com.amazonaws:aws-lambda-java-events:2.0.2")
 	implementation("com.amazonaws:aws-lambda-java-core:1.1.0")
-	implementation("org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR11")
-//	implementation("org.springframework.cloud:spring-cloud-starter-aws")
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.springframework.cloud:spring-cloud-function-context")
 	implementation("org.springframework.cloud:spring-cloud-function-adapter-aws")
@@ -40,6 +38,10 @@ dependencyManagement {
 	}
 }
 
+tasks.withType<Jar> {
+	enabled = true
+}
+
 tasks.withType<KotlinCompile> {
 	kotlinOptions {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
@@ -47,6 +49,24 @@ tasks.withType<KotlinCompile> {
 	}
 }
 
-tasks.withType<Test> {
-	useJUnitPlatform()
+val fatJar = task("fatJar", type = Jar::class) {
+	archiveBaseName.set("${project.name}-all")
+
+	manifest {
+		attributes["Implementation-Title"] = project.name
+		attributes["Implementation-Version"] = project.version
+	}
+	from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
+	with(tasks.jar.get() as CopySpec)
 }
+
+tasks {
+	"build" {
+		dependsOn(fatJar)
+	}
+}
+
+//tasks.withType<Test> {
+//	useJUnitPlatform()
+//}
+

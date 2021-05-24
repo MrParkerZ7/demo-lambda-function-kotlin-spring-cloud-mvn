@@ -17,12 +17,12 @@ class SpringCloudFunctionApplicationTests {
     @Test
     void fluxTrue() {
         client.post().uri("/flux").body(Mono.just("this is a cloud"), String.class).exchange()
-                .expectStatus().isOk().expectBody(String.class).isEqualTo("[true]");
+                .expectStatus().isOk().expectBody(String.class).isEqualTo("true");
     }
 
     @Test
     void fluxFalse() {
         client.post().uri("/flux").body(Mono.just("this is a function"), String.class).exchange()
-                .expectStatus().isOk().expectBody(String.class).isEqualTo("[false]");
+                .expectStatus().isOk().expectBody(String.class).isEqualTo("false");
     }
 }
