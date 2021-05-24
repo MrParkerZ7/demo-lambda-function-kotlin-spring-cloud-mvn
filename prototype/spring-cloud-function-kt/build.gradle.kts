@@ -21,7 +21,14 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	implementation("org.springframework.cloud:spring-cloud-starter-aws")
+	implementation("com.amazonaws:aws-lambda-java-events:2.0.2")
+	implementation("com.amazonaws:aws-lambda-java-core:1.1.0")
+	implementation("org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR11")
+//	implementation("org.springframework.cloud:spring-cloud-starter-aws")
+	implementation("org.springframework.boot:spring-boot-starter")
+	implementation("org.springframework.cloud:spring-cloud-function-context")
+	implementation("org.springframework.cloud:spring-cloud-function-adapter-aws")
+	implementation("org.springframework.cloud:spring-cloud-starter-function-webflux")
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
