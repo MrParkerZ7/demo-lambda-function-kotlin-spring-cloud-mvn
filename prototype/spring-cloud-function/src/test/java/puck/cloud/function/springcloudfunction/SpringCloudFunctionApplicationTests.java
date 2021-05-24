@@ -15,14 +15,14 @@ class SpringCloudFunctionApplicationTests {
     private WebTestClient client;
 
     @Test
-    void doesContainsCloud() {
-        client.post().uri("/containsCloud").body(Mono.just("this is a cloud"), String.class).exchange()
-                .expectStatus().isOk().expectBody(String.class).isEqualTo("true");
+    void fluxTrue() {
+        client.post().uri("/flux").body(Mono.just("this is a cloud"), String.class).exchange()
+                .expectStatus().isOk().expectBody(String.class).isEqualTo("[true]");
     }
 
     @Test
-    void doesNotContainsCloud() {
-        client.post().uri("/containsCloud").body(Mono.just("this is a function"), String.class).exchange()
-                .expectStatus().isOk().expectBody(String.class).isEqualTo("false");
+    void fluxFalse() {
+        client.post().uri("/flux").body(Mono.just("this is a function"), String.class).exchange()
+                .expectStatus().isOk().expectBody(String.class).isEqualTo("[false]");
     }
 }

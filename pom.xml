@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>pucik</groupId>
+    <groupId>puck</groupId>
     <artifactId>terraform-aws-lambda-microservice</artifactId>
     <packaging>pom</packaging>
     <version>0.0.1</version>
@@ -15,7 +15,7 @@
         </module><!-- https://github.com/awslabs/aws-serverless-java-container.git -->
         <module>demo/MySpringCloudFunctionPlanet
         </module><!-- https://github.com/mydeveloperplanet/MySpringCloudFunctionPlanet.git -->
-        <module>prototype/spring-cloud-function</module>
         <module>demo/spring-cloud-function</module><!-- https://github.com/spring-cloud/spring-cloud-function.git -->
+        <module>prototype/spring-cloud-function</module>
     </modules>
 </project>
