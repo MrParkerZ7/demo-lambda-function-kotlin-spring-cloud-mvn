@@ -1,31 +1,21 @@
 package puck.cloud.function.springcloudfunction;
 
-import org.springframework.boot.SpringBootConfiguration;
-import org.springframework.cloud.function.context.FunctionRegistration;
-import org.springframework.cloud.function.context.FunctionType;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.function.context.FunctionalSpringApplication;
-import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.support.GenericApplicationContext;
 
 import java.util.function.Function;
 
-@SpringBootConfiguration
-class SpringCloudFunctionApplication implements ApplicationContextInitializer<GenericApplicationContext> {
+@SpringBootApplication
+public class SpringCloudFunctionApplication {
 
     public static void main(String[] args) {
         FunctionalSpringApplication.run(SpringCloudFunctionApplication.class, args);
     }
 
+    @Bean
     public Function<String, Boolean> containsCloud() {
         return value -> value.contains("cloud");
-    }
-
-    @Override
-    public void initialize(GenericApplicationContext context) {
-        context.registerBean("containsCloud", FunctionRegistration.class,
-                () -> new FunctionRegistration<>(containsCloud())
-                        .type(FunctionType.from(String.class).to(Boolean.class)));
     }
 
 }
