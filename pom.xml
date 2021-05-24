@@ -16,5 +16,6 @@
         <module>demo/MySpringCloudFunctionPlanet
         </module><!-- https://github.com/mydeveloperplanet/MySpringCloudFunctionPlanet.git -->
         <module>prototype/spring-cloud-function</module>
+        <module>demo/spring-cloud-function</module><!-- https://github.com/spring-cloud/spring-cloud-function.git -->
     </modules>
 </project>

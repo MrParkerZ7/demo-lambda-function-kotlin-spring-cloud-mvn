@@ -5,15 +5,16 @@ import org.springframework.cloud.function.context.FunctionRegistration;
 import org.springframework.cloud.function.context.FunctionType;
 import org.springframework.cloud.function.context.FunctionalSpringApplication;
 import org.springframework.context.ApplicationContextInitializer;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.GenericApplicationContext;
 
 import java.util.function.Function;
 
 @SpringBootConfiguration
-class MySpringCloudFunctionPlanetApplication implements ApplicationContextInitializer<GenericApplicationContext> {
+class SpringCloudFunctionApplication implements ApplicationContextInitializer<GenericApplicationContext> {
 
     public static void main(String[] args) {
-        FunctionalSpringApplication.run(MySpringCloudFunctionPlanetApplication.class, args);
+        FunctionalSpringApplication.run(SpringCloudFunctionApplication.class, args);
     }
 
     public Function<String, Boolean> containsCloud() {
