@@ -37,3 +37,4 @@ out/
 .vscode/
 prototype/spring-cloud-function/.mvn/
 prototype/spring-cloud-function-aws-maven-kt/.mvn/
+prototype/spring-cloud-function-kt/.mvn/
