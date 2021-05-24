@@ -10,23 +10,22 @@ import reactor.core.publisher.Mono
 @FunctionalSpringBootTest
 @AutoConfigureWebTestClient
 internal class SpringCloudFunctionKtApplicationTests {
-	@Autowired
-	private val client: WebTestClient? = null
-	@Test
-	fun doesContainsCloud() {
-		client!!.post().uri("/normal").body(
-			Mono.just("this is a cloud"),
-			String::class.java
-		).exchange()
-			.expectStatus().isOk.expectBody(String::class.java)
-	}
+    @Autowired
+    private val client: WebTestClient? = null
 
-	@Test
-	fun doesNotContainsCloud() {
-		client!!.post().uri("/normal").body(
-			Mono.just("this is a function"),
-			String::class.java
-		).exchange()
-			.expectStatus().isOk.expectBody(String::class.java)
-	}
+    @Test
+    fun doesContainsCloud() {
+        client!!.post().uri("/normal")
+            .body(Mono.just("this is a cloud"), String::class.java)
+            .exchange().expectStatus().isOk
+            .expectBody(String::class.java)
+    }
+
+    @Test
+    fun doesNotContainsCloud() {
+        client!!.post().uri("/normal")
+            .body(Mono.just("this is a function"), String::class.java)
+            .exchange().expectStatus().isOk
+            .expectBody(String::class.java)
+    }
 }
