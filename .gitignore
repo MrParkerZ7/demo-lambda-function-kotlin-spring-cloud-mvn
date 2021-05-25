@@ -38,3 +38,4 @@ out/
 prototype/spring-cloud-function/.mvn/
 prototype/spring-cloud-function-aws-maven-kt/.mvn/
 prototype/spring-cloud-function-kt/.mvn/
+prototype/spring-cloud-function-kt-sdk8/.mvn/

@@ -1,17 +1,17 @@
 package puck.cloud.function.kt.springcloudfunctionkt
 
+import org.reactivestreams.Publisher
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
-import org.springframework.cloud.function.context.FunctionalSpringApplication
 import org.springframework.context.annotation.Bean
+import org.springframework.messaging.Message
+import org.springframework.messaging.support.MessageBuilder
 import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
 import java.util.function.Function
 
 @SpringBootApplication
 class SpringCloudFunctionKtApplication {
-//    @Bean
-//    fun normal(): Function<Flux<String>, Flux<Boolean>> = Function { it.map { it.contains("cloud") } }
-
     @Bean
     fun normal(): Function<String, Boolean> = Function { it.contains("cloud") }
 
@@ -22,7 +22,3 @@ class SpringCloudFunctionKtApplication {
         }
     }
 }
-
-//fun main(args: Array<String>) {
-//    runApplication<SpringCloudFunctionKtApplication>(*args)
-//}
