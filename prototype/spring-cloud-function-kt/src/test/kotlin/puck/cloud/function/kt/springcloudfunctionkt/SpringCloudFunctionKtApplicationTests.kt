@@ -15,7 +15,7 @@ internal class SpringCloudFunctionKtApplicationTests {
 
     @Test
     fun doesContainsCloud() {
-        client!!.post().uri("/normal")
+        client!!.post().uri("/handler")
             .body(Mono.just("this is a cloud"), String::class.java)
             .exchange().expectStatus().isOk
             .expectBody(String::class.java)
@@ -23,7 +23,7 @@ internal class SpringCloudFunctionKtApplicationTests {
 
     @Test
     fun doesNotContainsCloud() {
-        client!!.post().uri("/normal")
+        client!!.post().uri("/handler")
             .body(Mono.just("this is a function"), String::class.java)
             .exchange().expectStatus().isOk
             .expectBody(String::class.java)

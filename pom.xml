@@ -19,6 +19,5 @@
         <module>demo/aws-lambda-api-gateway</module><!-- https://github.com/MrParkerZ7/aws-lambda-api-gateway.git -->
         <module>prototype/spring-cloud-function</module>
         <module>prototype/spring-cloud-function-kt</module>
-        <module>prototype/spring-cloud-function-kt-sdk8</module>
     </modules>
 </project>
