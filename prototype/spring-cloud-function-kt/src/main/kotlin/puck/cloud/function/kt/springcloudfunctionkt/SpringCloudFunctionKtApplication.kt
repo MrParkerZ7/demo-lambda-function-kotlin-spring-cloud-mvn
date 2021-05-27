@@ -5,11 +5,15 @@ import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
 import java.util.function.Function
 
+
 @SpringBootApplication
 class SpringCloudFunctionKtApplication {
 
     @Bean
-    fun handler(): Function<String, Boolean> = Function { it.contains("cloud") }
+    fun handler(): Function<String, String> = Function {
+        println("Begin")
+        invokeRequestLambda(it)
+    }
 
     companion object {
         @JvmStatic

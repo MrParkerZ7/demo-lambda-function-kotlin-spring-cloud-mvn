@@ -1,5 +1,6 @@
 package puck.cloud.function.kt.springcloudfunctionkt
 
+import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient
@@ -15,6 +16,7 @@ internal class SpringCloudFunctionKtApplicationTests {
 
     @Test
     fun doesContainsCloud() {
+        LambdaConfig.env = LambdaConfig.Env.LOCAL
         client!!.post().uri("/handler")
             .body(Mono.just("this is a cloud"), String::class.java)
             .exchange().expectStatus().isOk
@@ -23,6 +25,7 @@ internal class SpringCloudFunctionKtApplicationTests {
 
     @Test
     fun doesNotContainsCloud() {
+        LambdaConfig.env = LambdaConfig.Env.LOCAL
         client!!.post().uri("/handler")
             .body(Mono.just("this is a function"), String::class.java)
             .exchange().expectStatus().isOk
