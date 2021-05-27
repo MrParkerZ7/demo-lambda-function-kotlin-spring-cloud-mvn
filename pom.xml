@@ -16,7 +16,7 @@
         <module>demo/MySpringCloudFunctionPlanet
         </module><!-- https://github.com/mydeveloperplanet/MySpringCloudFunctionPlanet.git -->
         <module>demo/spring-cloud-function</module><!-- https://github.com/spring-cloud/spring-cloud-function.git -->
-        <module>demo/aws-lambda-api-gateway</module><!-- https://github.com/MrParkerZ7/aws-lambda-api-gateway.git -->
+<!--        <module>demo/aws-lambda-api-gateway</module>&lt;!&ndash; https://github.com/MrParkerZ7/aws-lambda-api-gateway.git &ndash;&gt;-->
         <module>prototype/spring-cloud-function</module>
         <module>prototype/spring-cloud-function-kt</module>
     </modules>
