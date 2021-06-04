@@ -1,4 +1,4 @@
-rootProject.name = "terraform-aws-lambda-microservice"
+rootProject.name = "lambda-function-spring-cloud-mvn"
 include("prototype:spring-cloud-function-kt")
 include("prototype:multi-module:main-multi-module-kts")
 include("prototype:multi-module:sub-a-multi-module-kts")

@@ -3,10 +3,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>puck</groupId>
-    <artifactId>terraform-aws-lambda-microservice</artifactId>
+    <artifactId>lambda-function-spring-cloud-mvn</artifactId>
     <packaging>pom</packaging>
     <version>0.0.1</version>
-    <name>terraform-aws-lambda-microservice</name>
+    <name>lambda-function-spring-cloud-mvn</name>
     <description>Lambda microservice spring boot</description>
     <!--    <url></url>-->
 
