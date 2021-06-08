@@ -14,9 +14,10 @@ class LambdaConfig {
     enum class Env { LOCAL, LAMBDA }
 }
 
-fun invokeRequestLambda(body: String, lambdaClient: AWSLambda, functionName: String): String {
+val klaxon = Klaxon()
+fun invokeRequestLambda(body: Any, lambdaClient: AWSLambda, functionName: String): String {
     val invokeRequest = InvokeRequest().withFunctionName(functionName)
-    val jsonBody = Klaxon().toJsonString(body)
+    val jsonBody = klaxon.toJsonString(body)
 
     if (LambdaConfig.env == LambdaConfig.Env.LOCAL)
         invokeRequest.withPayload("""{ "value": $jsonBody }""") // For locally payload
