@@ -1,9 +1,9 @@
 package puck.cloud.function.kt.springcloudfunctionkt
 
-import com.amazonaws.regions.Regions
-import com.amazonaws.services.lambda.AWSLambdaClientBuilder
+import com.amazonaws.services.lambda.AWSLambda
 import com.amazonaws.services.lambda.model.InvokeRequest
 import com.amazonaws.services.lambda.model.ServiceException
+import com.fasterxml.jackson.databind.util.JSONPObject
 import java.nio.charset.StandardCharsets
 
 class LambdaConfig {
@@ -14,22 +14,16 @@ class LambdaConfig {
     enum class Env { LOCAL, LAMBDA }
 }
 
-fun invokeRequestLambda(str: String): String {
-    val functionName = "arn:aws:lambda:ap-southeast-1:598137816602:function:spring-cloud-function"
-    println("Request: $str")
-    println("Function Name: $functionName")
+fun invokeRequestLambda(body: String, lambdaClient: AWSLambda, functionName: String): String {
     val invokeRequest = InvokeRequest().withFunctionName(functionName)
 
     if (LambdaConfig.env == LambdaConfig.Env.LOCAL)
-        invokeRequest.withPayload("""{"value": "$str"}""") // For locally payload
+        invokeRequest.withPayload("""{"value": "$body"}""") // For locally payload
     else
-        invokeRequest.withPayload(str) // For lambda payload
+        invokeRequest.withPayload(body) // For lambda payload
 
     try {
-        val awsLambda = AWSLambdaClientBuilder.standard()
-            .withRegion(Regions.AP_SOUTHEAST_1)
-            .build()
-        val invokeResult = awsLambda.invoke(invokeRequest)
+        val invokeResult = lambdaClient.invoke(invokeRequest)
         println("Raw result: ${invokeResult.payload}")
         val ans = String(invokeResult.payload.array(), StandardCharsets.UTF_8)
 

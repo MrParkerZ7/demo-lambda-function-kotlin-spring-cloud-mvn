@@ -92,6 +92,11 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<dependency>
+			<groupId>com.beust</groupId>
+			<artifactId>klaxon</artifactId>
+			<version>5.5</version>
+		</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>

@@ -11,11 +11,11 @@
     <!--    <url></url>-->
 
     <modules>
-        <module>demo/aws-serverless-java-container
-        </module><!-- https://github.com/awslabs/aws-serverless-java-container.git -->
-        <module>demo/MySpringCloudFunctionPlanet
-        </module><!-- https://github.com/mydeveloperplanet/MySpringCloudFunctionPlanet.git -->
-        <module>demo/spring-cloud-function</module><!-- https://github.com/spring-cloud/spring-cloud-function.git -->
+<!--        <module>demo/aws-serverless-java-container-->
+<!--        </module>&lt;!&ndash; https://github.com/awslabs/aws-serverless-java-container.git &ndash;&gt;-->
+<!--        <module>demo/MySpringCloudFunctionPlanet-->
+<!--        </module>&lt;!&ndash; https://github.com/mydeveloperplanet/MySpringCloudFunctionPlanet.git &ndash;&gt;-->
+<!--        <module>demo/spring-cloud-function</module>&lt;!&ndash; https://github.com/spring-cloud/spring-cloud-function.git &ndash;&gt;-->
 <!--        <module>demo/aws-lambda-api-gateway</module>&lt;!&ndash; https://github.com/MrParkerZ7/aws-lambda-api-gateway.git &ndash;&gt;-->
         <module>prototype/spring-cloud-function</module>
         <module>prototype/spring-cloud-function-kt</module>
