@@ -3,7 +3,7 @@ package puck.cloud.function.kt.springcloudfunctionkt
 import com.amazonaws.services.lambda.AWSLambda
 import com.amazonaws.services.lambda.model.InvokeRequest
 import com.amazonaws.services.lambda.model.ServiceException
-import com.fasterxml.jackson.databind.util.JSONPObject
+import com.beust.klaxon.Klaxon
 import java.nio.charset.StandardCharsets
 
 class LambdaConfig {
@@ -16,21 +16,17 @@ class LambdaConfig {
 
 fun invokeRequestLambda(body: String, lambdaClient: AWSLambda, functionName: String): String {
     val invokeRequest = InvokeRequest().withFunctionName(functionName)
+    val jsonBody = Klaxon().toJsonString(body)
 
     if (LambdaConfig.env == LambdaConfig.Env.LOCAL)
-        invokeRequest.withPayload("""{"value": "$body"}""") // For locally payload
+        invokeRequest.withPayload("""{ "value": $jsonBody }""") // For locally payload
     else
-        invokeRequest.withPayload(body) // For lambda payload
+        invokeRequest.withPayload(jsonBody) // For lambda payload
 
     try {
         val invokeResult = lambdaClient.invoke(invokeRequest)
-        println("Raw result: ${invokeResult.payload}")
-        val ans = String(invokeResult.payload.array(), StandardCharsets.UTF_8)
-
-        println("Result: $ans")
-        return ans
+        return String(invokeResult.payload.array(), StandardCharsets.UTF_8)
     } catch (e: ServiceException) {
-        println("Error: $e")
         throw e
     }
 }
