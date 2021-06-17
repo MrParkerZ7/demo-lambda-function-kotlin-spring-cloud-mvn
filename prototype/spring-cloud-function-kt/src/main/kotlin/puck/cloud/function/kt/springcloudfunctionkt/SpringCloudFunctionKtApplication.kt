@@ -19,11 +19,11 @@ class SpringCloudFunctionKtApplication {
             .build()
         val functionName = "arn:aws:lambda:ap-southeast-1:598137816602:function:spring-cloud-function"
 
-        invokeRequestLambda(
+        invokeRequestLambda<String>(
             body = it,
             lambdaClient = lambdaClient,
             functionName = functionName
-        )
+        )!!
     }
 
     companion object {

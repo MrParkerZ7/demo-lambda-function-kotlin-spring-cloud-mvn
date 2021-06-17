@@ -14,7 +14,7 @@ public class SpringCloudFunctionApplication {
     }
 
     @Bean
-    public Function<String, Boolean> flux() {
-        return str ->str.contains("cloud");
+    public Function<String, String> flux() {
+        return str -> str;
     }
 }
